@@ -1,0 +1,55 @@
+<div [formGroup]="inputForm" class="panelAlign">
+    <h4>Input Currency and Validation</h4>
+    <div class="form-group" [ngClass]="{'has-warning': inputForm.controls['priceInput'].dirty,
+         'has-error': inputForm.controls['priceInput'].touched && inputForm.controls['priceInput'].invalid }">
+        <input type="text" name="priceInput" formControlName="priceInput" #priceElem
+               inputCurrency [rawDataControl]="inputForm.controls['price']"
+               (focus)="setFocus(true, 'priceInput')"
+               (blur)="setFocus(false, 'priceInput')" />
+         <validate-error [extControl]="getExtendedControl(extControlList, 'priceInput')"></validate-error>
+    </div>
+    <button class="" (click)="submit()"
+            (mouseover)="focusOnElement('submit')" #submitButton
+            [class.look-disabled]="!isSubmitButtonEnabled()">
+        Submit
+    </button>
+    <div class="space-line">&nbsp;</div>
+    <p>
+        <span>Pure Number (raw) Variable Value:&nbsp;&nbsp;</span>
+        <span>{{priceRawEntry}}</span>
+    </p>
+    <p>
+        <span>Pure Number (raw) Form Control Value:&nbsp;&nbsp;</span>
+        <span>{{inputForm.value.price}}</span>
+    </p>
+    <p>
+        <span>Input Form Control Value:&nbsp;&nbsp;</span>
+        <span>{{inputForm.value.priceInput}}</span>
+    </p>
+    <p>
+        <span>DOM Element Value:&nbsp;&nbsp;</span>
+        <span>{{priceElem.value}}</span>
+    </p>
+    <div class="space-line2">&nbsp;</div>
+    <h4>Input Mask and Validation for US Phone Number</h4>
+    <div class="form-group" [ngClass]="{'has-warning': inputForm.controls['phoneEntry'].dirty,
+         'has-error': inputForm.controls['phoneEntry'].touched && inputForm.controls['phoneEntry'].invalid }">
+        <input type="text" name="phoneEntry"
+               formControlName="phoneEntry" #phoneElem
+               (focus)="setFocus(true, 'phoneEntry')"
+               (blur)="setFocus(false, 'phoneEntry')"
+               inputMask [maskPlaceholder]="'(___) ___-____'"
+               [syncFormControl]="inputForm.controls['phoneEntry']" />
+        <!--(inputMaskChanged)="onChangeInputMask($event, 'phoneEntry')">-->
+        <validate-error [extControl]="getExtendedControl(extControlList, 'phoneEntry')"></validate-error>
+    </div>    
+    <div class="space-line">&nbsp;</div>
+    <p>
+        <span>Input Form Control Value:&nbsp;&nbsp;</span>
+        <span>{{inputForm.value.phoneEntry}}</span>
+    </p>
+    <p>
+        <span>DOM Element Value:&nbsp;&nbsp;</span>
+        <span>{{phoneElem.value}}</span>
+    </p>
+</div>

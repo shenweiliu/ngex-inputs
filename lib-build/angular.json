@@ -1,0 +1,73 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ngex-input-format": {
+      "projectType": "library",
+      "root": "projects/ngex-input-format",
+      "sourceRoot": "projects/ngex-input-format/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "options": {
+            "project": "projects/ngex-input-format/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngex-input-format/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngex-input-format/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ngex-input-format/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+	"ngex-input-validator": {
+      "projectType": "library",
+      "root": "projects/ngex-input-validator",
+      "sourceRoot": "projects/ngex-input-validator/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "options": {
+            "project": "projects/ngex-input-validator/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngex-input-validator/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngex-input-validator/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ngex-input-validator/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
